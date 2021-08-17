@@ -9,8 +9,8 @@ import (
 func GetMuxRouter() *mux.Router {
 	r := mux.NewRouter().StrictSlash(true)
 
-	r.HandleFunc("/api/v1/sharfire/tags", nil).
-		Methods(http.MethodGet, http.MethodOptions)
+	r.HandleFunc("/api/v1/images/product", ProductImageProcessHandler).
+		Methods(http.MethodPut, http.MethodOptions)
 
 	r.NotFoundHandler = http.HandlerFunc(NotFoundHandler)
 

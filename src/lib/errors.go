@@ -1,6 +1,18 @@
 package lib
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"errors"
+)
+
+var (
+	ErrDatabaseConnection = errors.New("Couldn't connect to database.")
+	ErrNotFound           = errors.New("Not found.")
+	ErrAlreadyExists      = errors.New("Already exists.")
+	ErrForbidden          = errors.New("Forbidden.")
+	ErrInternal           = errors.New("Internal error.")
+	ErrBadRequest         = errors.New("Bad Request.")
+)
 
 type ErrorResponse struct {
 	Type        string `json:"@type"`
