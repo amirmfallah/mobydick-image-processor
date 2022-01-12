@@ -12,6 +12,7 @@ import (
 func HttpOptionsResponseHeaders(w http.ResponseWriter) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With")
 }
 
 func jsonResponseHeaders(w http.ResponseWriter) {

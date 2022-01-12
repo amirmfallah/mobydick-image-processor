@@ -17,12 +17,14 @@ import (
 
 const PRE_SIGNED_URI_EXPIRY = 10
 
-var onceS3Downloader sync.Once
-var S3Downloader *s3manager.Downloader
-var S3Uploader *s3manager.Uploader
-var onceS3Instance sync.Once
-var onceS3Uploader sync.Once
-var S3Instance *s3.S3
+var (
+	onceS3Downloader sync.Once
+	S3Downloader     *s3manager.Downloader
+	S3Uploader       *s3manager.Uploader
+	onceS3Instance   sync.Once
+	onceS3Uploader   sync.Once
+	S3Instance       *s3.S3
+)
 
 func GetS3Instance() (*s3.S3, error) {
 	var err error = nil
@@ -87,7 +89,7 @@ func UploadImage(user string, types string, file io.Reader) (*UploadedFile, erro
 
 	up, err := s3Uploader.Upload(&s3manager.UploadInput{
 		Bucket: aws.String(S3_BUCKET_NAME),
-		ACL:    aws.String("private"),
+		ACL:    aws.String("public-read"),
 		Key:    aws.String(objectKey),
 		Body:   file,
 	})

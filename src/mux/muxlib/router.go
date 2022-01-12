@@ -10,11 +10,9 @@ func GetMuxRouter() *mux.Router {
 	r := mux.NewRouter().StrictSlash(true)
 
 	r.HandleFunc("/api/v1/images/product", ProductImageProcessHandler).
-		Methods(http.MethodPut, http.MethodOptions)
+		Methods(http.MethodPost, http.MethodOptions)
 
 	r.NotFoundHandler = http.HandlerFunc(NotFoundHandler)
-
 	r.Use(mux.CORSMethodMiddleware(r))
-
 	return r
 }

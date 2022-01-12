@@ -8,7 +8,6 @@ import (
 	_ "image/jpeg"
 	_ "image/png"
 	"io"
-
 	"net/http"
 
 	"image-processor-dokkaan.ir/lib"
@@ -23,6 +22,12 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ProductImageProcessHandler(w http.ResponseWriter, r *http.Request) {
+	HttpOptionsResponseHeaders(w)
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
 	initLog(r)
 
 	bearerUser, err := lib.GetBearerUser(r.Header)
